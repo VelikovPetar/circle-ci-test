@@ -89,4 +89,4 @@ workflows:
       - release-only-job:
           filters:
             branches:
-              only: ^release/*
+              only: /^release\/\.*
