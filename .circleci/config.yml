@@ -90,5 +90,4 @@ workflows:
       - release-only-job
           filters:
             branches:
-              only:
-                - /^release\/.*/ # Java RegEx pattern matching
+              only: /^release\/.*/ # Java RegEx pattern matching
