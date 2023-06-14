@@ -75,8 +75,6 @@ jobs:
       - run: echo "On a release/ branch."
           
             
-    
-
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -87,4 +85,7 @@ workflows:
       - android-image-test
   release-workflow:
     jobs:
-      - release-only-job
+      - release-only-job:
+          filters:
+            branches:
+              only: ^release/*
