@@ -87,6 +87,8 @@ workflows:
   release-workflow:
     jobs:
       - release-only-job:
+          requires:
+            - curl-test
           filters:
             branches:
               only: /^release\/.*/
