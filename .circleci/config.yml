@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Hello World
           command: |
-           echo "hello World" |
+           echo "hello World"
            echo $ANDROID_HOME
   # Greeting 2
   curl-test:
