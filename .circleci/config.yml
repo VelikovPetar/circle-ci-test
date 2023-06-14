@@ -39,6 +39,7 @@ jobs:
           name: Assemble release build
           command: |
             ./gradlew assembleRelease
+  # Greeting 1          
   greet:
     executor:
       name: android/android-machine
@@ -48,6 +49,17 @@ jobs:
           command: |
            echo "hello World" |
            echo $ANDROID_HOME
+  # Greeting 2
+  curl-test:
+    executor: 
+      name: android/android-machine
+    steps:
+      - run: 
+          name: cURL Test
+          command: | 
+            curl google.com
+            
+    
 
 
 # Invoke jobs via workflows
@@ -57,4 +69,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - greet
-      - build-and-test
+      - curl-test
