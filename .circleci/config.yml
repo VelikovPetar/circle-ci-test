@@ -68,6 +68,11 @@ jobs:
           echo $ANDROID_HOME
           java --version
           sdkmanager --version
+  release-only-job:
+    executor:
+      name: android/android-machine
+    steps:
+      - run: echo "On a release/ branch."
           
             
     
@@ -80,3 +85,10 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - android-image-test
+  release-workflow:
+    jobs:
+      - release-only-job
+          filters:
+            branches:
+              only:
+                - /^release\/.*/ # Java RegEx pattern matching
