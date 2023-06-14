@@ -86,6 +86,7 @@ workflows:
   # Workflow only triggered for release branches    
   release-workflow:
     jobs:
+      - curl-test
       - release-only-job:
           requires:
             - curl-test
