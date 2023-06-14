@@ -83,6 +83,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - android-image-test
+  # Workflow only triggered for release branches    
   release-workflow:
     jobs:
       - release-only-job:
