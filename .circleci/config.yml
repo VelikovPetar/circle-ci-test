@@ -109,7 +109,7 @@ jobs:
       date:
         type: string
     steps:
-      - run: echo "<< parameters.id >>, << paramters.date >>"
+      - run: echo "<< parameters.id >>, << parameters.date >>"
 
           
             
