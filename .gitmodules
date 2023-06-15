@@ -1,0 +1,3 @@
+[submodule "circleci-sumodule"]
+	path = circleci-sumodule
+	url = https://github.com/VelikovPetar/circleci-submodule.git
