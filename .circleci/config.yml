@@ -152,12 +152,12 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     #jobs:
       #- android-image-test
-  checkout-project:
-    jobs:
-      - checkout-and-init-submodules
-      - parameterized-job:
-          id: 42
-          date: 2023-06-15
+  # checkout-project:
+  #   jobs:
+  #     - checkout-and-init-submodules
+  #     - parameterized-job:
+  #         id: 42
+  #         date: 2023-06-15
   # Workflow only triggered for release branches  
   release-workflow:
     jobs:
