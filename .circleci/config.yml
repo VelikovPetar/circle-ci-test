@@ -16,12 +16,15 @@ jobs:
     executor: 
       name: android/android-machine
     steps:
-      - checkout
-      - run: 
-          name: Init submodule
-          command: |
+      - checkout:
+          post:
             git submodule init
             git submodule update
+      # - run: 
+      #     name: Init submodule
+      #     command: |
+      #       git submodule init
+      #       git submodule update
       - run:
           name: Print submodule content
           command: |
