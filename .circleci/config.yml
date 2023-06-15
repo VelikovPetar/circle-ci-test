@@ -11,7 +11,7 @@ orbs:
 
   # Executors:
 executors:
-  demo-executor:
+  android-docker-executor:
     docker:
       - image: cimg/android:2023.06
     working_directory: /tmp
@@ -120,7 +120,7 @@ jobs:
       - run: echo "<< parameters.id >>, << parameters.date >>"
   # Printer job
   printer-job:
-    executor: demo-executor
+    executor: android-docker-executor
     steps:
       - run: mkdir -p workspace
       - run: echo "K9" > workspace/text.txt
@@ -130,7 +130,7 @@ jobs:
             - text.txt
   # Reader job
   reader-job:
-    executor: demo-executor
+    executor: android-docker-executor
     steps:
       - attach_workspace:
           at: /tmp/workspace
