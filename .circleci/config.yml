@@ -9,6 +9,11 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
 
+# parameters
+parameters:
+  p1:
+    type: string
+    default: "default"
   # Executors:
 executors:
   android-docker-executor:
@@ -135,7 +140,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run: cat workspace/text.txt
-      - run: echo << pipeline.id >>
+      - run: echo "pineline.id = << pipeline.id >>, pipeline.parameters.p1 = << pipeline.parameters.p1 >>""
 
           
             
