@@ -135,6 +135,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run: cat workspace/text.txt
+      - run: echo << pipeline.id >>
 
           
             
