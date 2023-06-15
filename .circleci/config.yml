@@ -99,6 +99,18 @@ jobs:
       name: android/android-machine
     steps:
       - run: echo "On a release/ branch."
+  # Parameterized job
+  parameterized-job:
+    executor:
+      name: android/android-machine
+    parameters:
+      id:
+        type: integer
+      date:
+        type: string
+    steps:
+      - run: echo "<< parameters.id >>, << paramters.date >>"
+
           
             
 
@@ -112,6 +124,9 @@ workflows:
   checkout-project:
     jobs:
       - checkout-and-init-submodules
+      - parameterized-job:
+          id: 42
+          date: 2023-06-15
   # Workflow only triggered for release branches  
   release-workflow:
     jobs:
