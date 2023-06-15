@@ -22,7 +22,11 @@ jobs:
           command: |
             git submodule init
             git submodule update
-      - run:
+  verify-submodules:
+    executor:
+      name: android/android-machine
+    steps:
+      - run: 
           name: Print submodule content
           command: |
             ls
@@ -95,13 +99,16 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  demo-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
+  #demo-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
-    jobs:
-      - android-image-test  
+    #jobs:
+      #- android-image-test
   checkout-project:
     jobs:
       - checkout-and-init-submodules
+      - verify-submodules:
+          requires:
+            - checkout-and-init-submodules
   # Workflow only triggered for release branches  
   release-workflow:
     jobs:
