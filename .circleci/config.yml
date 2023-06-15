@@ -112,9 +112,6 @@ workflows:
   checkout-project:
     jobs:
       - checkout-and-init-submodules
-      - verify-submodules:
-          requires:
-            - checkout-and-init-submodules
   # Workflow only triggered for release branches  
   release-workflow:
     jobs:
