@@ -14,7 +14,7 @@ executors:
   demo-executor:
     docker:
       - image: cimg/android:2023.06
-    working_directory: /output
+    working_directory: /tmp
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
@@ -133,7 +133,7 @@ jobs:
     executor: demo-executor
     steps:
       - attach_workspace:
-          at: /output/workspace
+          at: /tmp/workspace
       - run: cat workspace/text.txt
 
           
