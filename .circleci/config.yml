@@ -9,6 +9,13 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
 
+  # Executors:
+executors:
+  demo-executor:
+    docker:
+      - image: cimg/android:2023.06
+    working_directory: /output
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
@@ -94,6 +101,7 @@ jobs:
           echo $ANDROID_HOME
           java --version
           sdkmanager --version
+  # Job only run for releases        
   release-only-job:
     executor:
       name: android/android-machine
@@ -110,6 +118,23 @@ jobs:
         type: string
     steps:
       - run: echo "<< parameters.id >>, << parameters.date >>"
+  # Printer job
+  printer-job:
+    executor: demo-executor
+    steps:
+      - run: mkdir -p workspace
+      - run: echo "K9" > workspace/text.txt
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - text.txt
+  # Reader job
+  reader-job:
+    executor: demo-executor
+    steps:
+      - attach_workspace:
+          at: /output/workspace
+      - run: cat workspace/text.txt
 
           
             
@@ -137,3 +162,10 @@ workflows:
           filters:
             branches:
               only: /^release\/.*/
+  # Workflow sharing data between jobs
+  print-read-workflow:
+    jobs:
+      - printer-job
+      - reader-job:
+          requires:
+            - printer-job
