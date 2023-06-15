@@ -140,7 +140,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run: cat workspace/text.txt
-      - run: echo "pineline.id = << pipeline.id >>, pipeline.parameters.p1 = << pipeline.parameters.p1 >>""
+      - run: echo "pineline.id = << pipeline.id >>, pipeline.parameters.p1 = << pipeline.parameters.p1 >>"
 
           
             
