@@ -106,6 +106,9 @@ jobs:
           echo $ANDROID_HOME
           java --version
           sdkmanager --list
+      - run:
+          name: Install specific buildtools version
+          command: sdkmanager "build-tools;30.0.0"
   # Job only run for releases        
   release-only-job:
     executor:
