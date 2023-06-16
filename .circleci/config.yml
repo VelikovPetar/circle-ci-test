@@ -163,15 +163,23 @@ jobs:
               --header "Circle-Token: 1cd8c7e6107f978fa9421ef0e3b6eaa444b513bd" \
               --header "content-type: application/json" \
               --data '{"branch":"circleci-project-setup","parameters":{"remote-trigger":true}}'
+  # MacOS executor
+  mac-os-job:
+    macos:
+      xcode: 14.2.0
 
-
-          
+    steps:
+      # Commands will execute in macOS container
+      # with Xcode 14.2.0 installed
+      - run: xcodebuild -version
             
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   demo-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
+    when: 
+      equal: [true, false]
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - android-image-test
@@ -206,4 +214,8 @@ workflows:
       equal: [true, false]
     jobs: 
       - trigger-other-repo-job
+  # macos workflow
+  mac-os-workflow:
+    jobs:
+      - mac-os-job
 
