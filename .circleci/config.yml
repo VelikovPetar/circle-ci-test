@@ -100,6 +100,7 @@ jobs:
   android-image-test:
     docker:
       - image: cimg/android:2023.06
+    resource_class: small
     steps:
       - run: |
           echo "Hi from cimg/android:2023.06 docker image!"
