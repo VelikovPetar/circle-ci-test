@@ -153,7 +153,7 @@ jobs:
           command: |
             curl --request POST \
               --url https://circleci.com/api/v2/project//github/VelikovPetar/Mendo-java-/pipeline \
-              --header "Circle-Token: 1cd8c7e6107f978fa9421ef0e3b6eaa444b513bd" \
+              --header "Circle-Token: 79057e98e76444511565b628cb772a67a7bd2bfa" \
               --header "content-type: application/json" \
               --data '{"branch":"circleci-project-setup","parameters":{"remote-trigger":true}}'
 
