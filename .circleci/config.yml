@@ -109,6 +109,9 @@ jobs:
       - run:
           name: Install specific buildtools version
           command: sdkmanager "build-tools;30.0.0"
+      - run:
+          name: Verify installation
+          command: sdkmanager --list
   # Job only run for releases        
   release-only-job:
     executor:
@@ -179,8 +182,6 @@ workflows:
   #         date: 2023-06-15
   # Workflow only triggered for release branches  
   release-workflow:
-    when: 
-      equal: [true, false]
     jobs:
       #- curl-test
       - release-only-job:
@@ -200,6 +201,8 @@ workflows:
             - printer-job
   # Trigger remote job
   trigger-remote-job:
+    when: 
+      equal: [true, false]
     jobs: 
       - trigger-other-repo-job
 
