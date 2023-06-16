@@ -141,6 +141,22 @@ jobs:
           at: /tmp/workspace
       - run: cat workspace/text.txt
       - run: echo "pineline.id = << pipeline.id >>, pipeline.parameters.p1 = << pipeline.parameters.p1 >>"
+  # Trigger a job from a different repo
+  trigger-other-repo-job:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps: 
+      - run: echo "Starting a job in Mendo-java..."
+      - run: 
+          name: launching job via cURL...
+          command: |
+            curl --request POST \
+              --url https://circleci.com/api/v2/project//github/VelikovPetar/Mendo-java-/pipeline \
+              --header "Circle-Token: $CIRCLECI_API_KEY" \
+              --header "content-type: application/json" \
+              --data '{"branch":"circleci-project-setup","parameters":{"remote-trigger":true}}'
+
 
           
             
@@ -175,3 +191,8 @@ workflows:
       - reader-job:
           requires:
             - printer-job
+  # Trigger remote job
+  trigger-remote-job:
+    jobs: 
+      - trigger-other-repo-job
+
