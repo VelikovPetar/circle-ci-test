@@ -192,17 +192,14 @@ workflows:
   #         date: 2023-06-15
   # Workflow only triggered for release branches  
   release-workflow:
-    when:
-      branches:
-        only: /^release\/.*/
     jobs:
       #- curl-test
-      - release-only-job
+      - release-only-job:
           #requires:
             #- curl-test
-          # filters:
-          #   branches:
-          #     only: /^release\/.*/
+          filters:
+            branches:
+              only: /^release\/.*/
   # Workflow sharing data between jobs
   print-read-workflow:
     when: 
