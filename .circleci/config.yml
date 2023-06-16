@@ -172,6 +172,7 @@ jobs:
       # Commands will execute in macOS container
       # with Xcode 14.2.0 installed
       - run: xcodebuild -version
+      - run: brew --version
             
 
 # Invoke jobs via workflows
